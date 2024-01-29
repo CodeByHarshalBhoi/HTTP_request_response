@@ -16,6 +16,9 @@ export class DashboardComponent implements OnInit{
   selectedTask: any;
   currentTaskId: string = '';
 
+  //FOR LOADER
+  isLoading:boolean = false;
+
   constructor(private http:HttpClient){}
 
 
@@ -82,5 +85,6 @@ this.fetchData();
       this.showCreateTaskForm = true;
       this.editmode = true;
       this.selectedTask = this.allTask.find((task) => {return task.id === id})
+      this.fetchData();
     }
 }

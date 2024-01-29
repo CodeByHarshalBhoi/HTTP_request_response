@@ -10,21 +10,19 @@ import { Task } from 'src/app/Model/task';
 export class CreateTaskComponent {
 
   @Input() isEditMode:boolean = false;
-
-
   @Input() selectedTask: any;
-  
   @ViewChild('taskForm') taskForm: NgForm | undefined;
 
 
 
   @Output() CloseForm: EventEmitter<boolean> = new EventEmitter<boolean>();
-
   @Output() EmitTaskData:EventEmitter<Task>  = new EventEmitter<Task>()
 
   onSubmitForm(formValue:NgForm){
     this.EmitTaskData.emit(formValue.value);
     console.log(formValue.value);
+
+    //for form close after submit button was clicked
     this.CloseForm.emit(false)
 
   }
@@ -32,7 +30,7 @@ export class CreateTaskComponent {
   ngAfterViewInit(){
     setTimeout(() => {
       this.taskForm?.form.patchValue(this.selectedTask);
-    }, 0);
+    }, 1000);
     // this.taskForm.form.patchValue(this.selectedTask);
   }
 
